@@ -1,0 +1,160 @@
+<mat-tab-group>
+    <mat-tab label="COVID Vaccination History">
+        <div style="padding: 24px;display: flex;justify-content: center;" class="patient_tab1">
+            <mat-card style="width: 450px; background-color:rgba(244, 244, 244, 0.6);">
+                <mat-card-content>
+                    <form [formGroup]="vaccineForm" class="full-width" (ngSubmit)="onAddCovidInfo()">
+                        <div fxLayout="column">
+                            <div formGroupName="vaccinationHistory">
+                                <div>
+                                    <mat-form-field style="font-weight: bold;">
+                                        <input type="text" matInput placeholder="Vaccine" style="font-weight: bold;"
+                                            formControlName="vaccine_name">
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field>
+                                        <input type="text" matInput placeholder="Shot 1"
+                                            formControlName="first_shot_on">
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field>
+                                        <input type="text" matInput placeholder="Shot 2"
+                                            formControlName="second_shot_on">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div>
+                                <mat-checkbox formControlName="covid_affected" color="primary">COVID Affected</mat-checkbox>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input type="text" matInput placeholder="Affected Date"
+                                        formControlName="affected_on">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-checkbox formControlName="covid_recovered" color="primary">COVID Recovered</mat-checkbox>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input type="text" matInput placeholder="Recovered Date"
+                                        formControlName="recovered_on">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button type="submit" mat-stroked-button color="primary" style="background-color: rgba(8, 56, 136, 1); color:floralwhite;"
+                                    class="pull-right">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-tab>
+
+
+    <mat-tab label="Doctor Consultation History">
+        <div style="padding:24px;display: flex;justify-content: center;"class="patient_tab2">
+            <table mat-table [dataSource]="consultationList" class="mat-elevation-z8" style="width: 80%; background-color:rgba(244, 244, 244, 0.6);">
+                <ng-container matColumnDef="consultation_date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.consultation_date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="doctorEmail">
+                    <th mat-header-cell *matHeaderCellDef> Doctor </th>
+                    <td mat-cell *matCellDef="let element"> {{element.doctorEmail}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="symptoms">
+                    <th mat-header-cell *matHeaderCellDef> Symptoms </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symptoms}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="oxygen_level">
+                    <th mat-header-cell *matHeaderCellDef> SPO2 </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oxygen_level}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="followup_date">
+                    <th mat-header-cell *matHeaderCellDef> Followup Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.followup_date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="medicines">
+                    <th mat-header-cell *matHeaderCellDef> Medicines </th>
+                    <td mat-cell *matCellDef="let element"> {{element.medicines}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="noDataFound">
+                    <mat-footer-cell *matFooterCellDef colspan="5" class="table-text-center">
+                        <span> No records found</span>
+                    </mat-footer-cell>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="consultationListColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: consultationListColumns;"></tr>
+                <ng-container>
+                    <tr mat-footer-row *matFooterRowDef="['noDataFound']"
+                        [ngStyle]="{'display':(consultationList && (consultationList.data.length === 0))?'flex':'none'}">
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+    </mat-tab>
+
+
+    <mat-tab label="Nearby Hospitals">
+        <div class="patient_tab3">
+        <div style="padding: 24px;">
+            <div style="display: inline-block;">
+                <mat-form-field style="width:300px; margin-right: 16px;">
+                    <input type="text" matInput placeholder="City" [(ngModel)]="citySearch" style="color:rgb(0, 0, 0);">
+                </mat-form-field>
+                <button mat-stroked-button color="primary" class="ml-8" (click)="getHospitalsByCity()" style="background-color: rgba(8, 56, 136, 1); color:floralwhite;">Search</button>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;">
+            <table mat-table [dataSource]="hospitalsList" class="mat-elevation-z8" style="width: 80%; background-color:rgba(244, 244, 244, 0.6);">
+                <ng-container matColumnDef="hospitalName">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="phoneNumber">
+                    <th mat-header-cell *matHeaderCellDef> Contact </th>
+                    <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Address </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef> City </th>
+                    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="state">
+                    <th mat-header-cell *matHeaderCellDef> State </th>
+                    <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                </ng-container>
+                <ng-container matColumnDef="noDataFound">
+                    <mat-footer-cell *matFooterCellDef colspan="5" class="table-text-center">
+                        <span> No hospitals found</span>
+                    </mat-footer-cell>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="hospitalColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: hospitalColumns;"></tr>
+                <ng-container>
+                    <tr mat-footer-row *matFooterRowDef="['noDataFound']"
+                        [ngStyle]="{'display':(hospitalsList && (hospitalsList.data.length === 0))?'flex':'none'}">
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+    </div>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,21 @@
+.toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+.backGroundImage {
+  // background-image: url('./background-image.jpeg');
+  background-image: url('https://www.policynote.ca/wp-content/uploads/2019/03/pn_Mar2019_CommunityHealthCentres.png');
+  // background-image: url('https://www.telepaxx.com/wp-content/uploads/2020/01/roland-berger-study-future-of-health.jpg');
+  // background-image: url('https://www.pmlive.com/__data/assets/image/0010/1358794/digital_healthcare_chronic_disease.jpg');
+  height: 100%;
+  background-size: 100% 100%;
+}
+
+.backGroundLoginImage {
+  // background-image: url('./background-image.jpeg');
+  // background-image: url('https://www.policynote.ca/wp-content/uploads/2019/03/pn_Mar2019_CommunityHealthCentres.png');
+  background-image: url('https://acceptance111.sana-cloud.net/content/files/images/login.jpg');
+  // background-image: url('https://www.pmlive.com/__data/assets/image/0010/1358794/digital_healthcare_chronic_disease.jpg');
+  height: 100%;
+  background-size: 100% 100%;
+}

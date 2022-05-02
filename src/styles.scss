@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.pull-right {
+    float: right;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.ml-8 {
+    margin-left: 8px;
+}
+.mr-8 {
+    margin-right: 8px;
+}
+
+.mat-progress-bar {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.success-message,
+.warning-message {
+    padding: 8px;
+    border-radius: 4px;
+}
+
+snack-bar-container.success,
+.success-message {
+    background: #dbefdc !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+snack-bar-container.warning,
+.warning-message {
+    background: #ffddd3 !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.table-text-center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }

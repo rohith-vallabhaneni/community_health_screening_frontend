@@ -1,0 +1,27 @@
+.mat-form-field {
+    width: 100%;
+}
+
+.patient_tab1 {
+    background-image: url('https://cloudfront-us-east-2.images.arcpublishing.com/reuters/VEKSCTM4ERJNFDZX7ZKNEJZP2A.jpg');
+    height: 86vh;
+    background-size: 100% 100%;
+}
+
+.patient_tab2 {
+    background-image: url('https://drsonisanjayhomeocure.com/wp-content/uploads/2020/08/1-ONLINE-CONSULTATION.png');
+    height: 86vh;
+    background-size: 100% 100%;
+}
+
+.patient_tab3 {
+    background-image: url('https://www.ucsfhealth.org/-/media/project/ucsf/ucsf-health/patient-stories-carousel/us-news-2021/pcmb-mobile-2x-1.jpg');
+    height: 86vh;
+    background-size: 100% 100%;
+}
+
+mat-card-title,
+mat-card-content {
+    display: flex;
+    justify-content: center;
+}
